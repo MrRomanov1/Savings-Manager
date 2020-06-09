@@ -10,11 +10,11 @@ class SavingsManager {
 
     UserManager userManager;
 
-    /*SavingsManager() {}
+public:
+    SavingsManager(string fileName) : userManager(fileName) {}
     ;
     ~SavingsManager() {
-    };*/
-public:
+    };
     void registerUser();
     void signInUser();      //TODO
     void changeLoggedInUserPassword();  //TODO
