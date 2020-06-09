@@ -1,9 +1,11 @@
 #include <iostream>
+#include "SavingsManager.h"
 
 using namespace std;
 
 int main()
 {
-    cout << "Hello world!" << endl;
+    SavingsManager savingsManager;
+
     return 0;
 }

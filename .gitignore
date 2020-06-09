@@ -30,9 +30,13 @@
 *.exe
 *.out
 
+/plan
+
 *.cbp
 
 *.layout
 
 *.xml
 *.app
+
+*.depend
