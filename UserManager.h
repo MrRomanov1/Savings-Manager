@@ -3,22 +3,27 @@
 
 #include <iostream>
 #include <vector>
+#include <conio.h>
 
 #include "User.h"
+#include "FileWithUsers.h"
 
 using namespace std;
 
 class UserManager {
     int loggedInUserId;
     vector <User> users;
-    //FileWithUsers fileWithUsers;
+    FileWithUsers fileWithUsers;
     User insertNewUserData();
     int getNewUserId();
-    bool checkIfLoginExists();
+    bool checkIfLoginExists(string login);
     bool checkIfNewPasswordIsSameAsOld();
 
 public:
-    //UserManager();
+
+    UserManager(string fileName) : fileWithUsers(fileName) {
+        loggedInUserId = 0;
+    };
     void registerUser();
     int signInUser();
 
