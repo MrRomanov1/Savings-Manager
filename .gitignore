@@ -29,4 +29,10 @@
 # Executables
 *.exe
 *.out
+
+*.cbp
+
+*.layout
+
+*.xml
 *.app
