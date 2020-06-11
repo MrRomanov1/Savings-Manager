@@ -19,3 +19,31 @@ void FileWithUsers::addUserToFile(User user) {
 
     xml.Save("users.xml");
 }
+
+vector <User> FileWithUsers::loadUsersFromFile() {
+
+    User user;
+    vector <User> users;
+
+    xml.ResetPos();
+    if (checkIfFileExists()) {
+        xml.FindElem();
+        xml.IntoElem();
+        while (xml.FindElem("User")) {
+
+            xml.FindChildElem("UserID");
+            user.setId(AuxiliaryMethods::convertStringToInt(xml.GetChildData()));
+            xml.FindChildElem("Name");
+            user.setName(xml.GetChildData());
+            xml.FindChildElem("Surname");
+            user.setSurname(xml.GetChildData());
+            xml.FindChildElem("Login");
+            user.setLogin(xml.GetChildData());
+            xml.FindChildElem("Password");
+            user.setPassword(xml.GetChildData());
+
+            users.push_back(user);
+        }
+    }
+    return users;
+}
