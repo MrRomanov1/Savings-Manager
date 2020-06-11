@@ -26,7 +26,7 @@ public:
         users = fileWithUsers.loadUsersFromFile();
     };
     void registerUser();
-    int signInUser();
+    void signInUser();
 
     bool checkIfUserIsLoggedIn();
     void changeLoggedInUserPassword();
