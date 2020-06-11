@@ -13,12 +13,12 @@ public:
     static string convertIntToString(int number);
     static int convertStringToInt(string number);
     static float convertStringToFloat(string number);
-    //static string getNumber(string text, int pozycjaZnaku);
     static string changeFirstLetterToCapitalAndRemainingToLowercase(string text);
     static int getInteger();
     static char getCharacter();
     //static string sprawdzPoprawnoscTelefonu();
     //static string sprawdzPoprawnoscEmail();
     static string loadLine();
+    static string checkPasswordRequirements();
 };
 #endif

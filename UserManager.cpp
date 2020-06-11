@@ -30,7 +30,7 @@ User UserManager::insertNewUserData() {
     } while (checkIfLoginExists(user.getLogin()));
 
     cout << "Podaj haslo: ";
-    cin >> password;
+    password = AuxiliaryMethods::checkPasswordRequirements();
     user.setPassword(password);
 
     return user;
@@ -70,7 +70,7 @@ void UserManager::signInUser() {
 
                 if (itr -> getPassword() == password) {
                     loggedInUserId = itr -> getId();
-                    cout << endl << "Zalogowales sie." << endl << endl;
+                    cout << endl << "Witaj " << itr -> getName() << "." << endl << endl;
                     cout << "Nacisnij dowolny przycisk, aby kontynuowac." << endl;
                     getch();
                     return;

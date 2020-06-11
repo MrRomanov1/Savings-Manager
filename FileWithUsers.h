@@ -14,7 +14,6 @@ using namespace std;
 
 class FileWithUsers : public XmlFile {
 
-    string zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(User user);
     User getUserData(string daneJednegoUzytkownikaOddzielonePionowymiKreskami);
 
 public:
