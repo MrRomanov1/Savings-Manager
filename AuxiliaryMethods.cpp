@@ -21,14 +21,6 @@ string AuxiliaryMethods::loadLine() {
     getline(cin, input);
     return input;
 }
-/*string AuxiliaryMethods::pobierzLiczbe(string tekst, int pozycjaZnaku) {
-    string liczba = "";
-    while(isdigit(tekst[pozycjaZnaku]) == true) {
-        liczba += tekst[pozycjaZnaku];
-        pozycjaZnaku ++;
-    }
-    return liczba;
-}*/
 
 string AuxiliaryMethods::changeFirstLetterToCapitalAndRemainingToLowercase(string text) {
     if (!text.empty()) {
@@ -67,4 +59,36 @@ char AuxiliaryMethods::getCharacter() {
         cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
     }
     return character;
+}
+
+string AuxiliaryMethods::checkPasswordRequirements() {
+
+    string password = "";
+    cin.sync();
+    int passwordLength = 0;
+
+    while (true) {
+        getline(cin, password);
+        passwordLength = password.length();
+        int digits = 0;
+        int uppercase = 0;
+
+        if (passwordLength < 6) {
+            cout << "Wprowadzone haslo jest za krotkie. Wprowadz haslo ponownie: " << endl;
+        } else {
+
+            for (int i = 0; i < passwordLength; i++) {
+                if (isdigit (password [i])) {
+                    digits++;
+                } else if (isupper (password [i])) {
+                    uppercase++;
+                }
+            }
+            if ( (digits < 1 ) || ( uppercase < 1) ) {
+                cout << "Wprowadzone haslo nie zawiera wielkiej litery lub cyfer. Wprowadz haslo ponownie: " << endl;
+            } else
+                break;
+        }
+    }
+    return password;
 }
