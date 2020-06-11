@@ -15,6 +15,12 @@ int AuxiliaryMethods::convertStringToInt(string number) {
     return liczbaInt;
 }
 
+string AuxiliaryMethods::loadLine() {
+    cin.sync();
+    string input = "";
+    getline(cin, input);
+    return input;
+}
 /*string AuxiliaryMethods::pobierzLiczbe(string tekst, int pozycjaZnaku) {
     string liczba = "";
     while(isdigit(tekst[pozycjaZnaku]) == true) {
@@ -50,7 +56,7 @@ int AuxiliaryMethods::getInteger() {
 char AuxiliaryMethods::getCharacter() {
     string input = "";
     char character  = {0};
-
+    cin.sync();
     while (true) {
         getline(cin, input);
 

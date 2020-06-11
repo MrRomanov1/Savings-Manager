@@ -19,5 +19,6 @@ public:
     static char getCharacter();
     //static string sprawdzPoprawnoscTelefonu();
     //static string sprawdzPoprawnoscEmail();
+    static string loadLine();
 };
 #endif
