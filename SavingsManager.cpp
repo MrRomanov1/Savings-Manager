@@ -12,7 +12,7 @@ void SavingsManager::signInUser() {
     userManager.signInUser();
     if (userManager.checkIfUserIsLoggedIn()) {
 
-        //adresatMenedzer = new AdresatMenedzer(NAZWA_PLIKU_Z_ADRESATAMI, userManager.pobierzIdZalogowanegoUzytkownika());
+        incomesManager = new IncomesManager(INCOMES_FILE_NAME, userManager.getLoggedInUserId());
     }
 }
 
@@ -34,8 +34,8 @@ char SavingsManager::choseOptionFromMainMenu() {
 
 void SavingsManager::signOutUser() {
     userManager.signOutUser();
-    /*delete adresatMenedzer;
-    adresatMenedzer = NULL;*/
+    delete incomesManager;
+    incomesManager = NULL;
 }
 
 char SavingsManager::choseOptionFromUserMenu() {
@@ -57,4 +57,14 @@ char SavingsManager::choseOptionFromUserMenu() {
     choice = AuxiliaryMethods::getCharacter();
 
     return choice;
+}
+
+void SavingsManager::addIncome() {
+    if (userManager.checkIfUserIsLoggedIn()) {
+        incomesManager->addIncome();
+    } else {
+        cout << "Nie jestes zalogowany" << endl;
+        cout << "Nacisnij dowolny przycisk, aby kontynuowac." << endl;
+        getch();
+    }
 }
