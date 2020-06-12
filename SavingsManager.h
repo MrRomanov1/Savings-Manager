@@ -3,28 +3,36 @@
 
 #include <iostream>
 #include "UserManager.h"
+#include "IncomesManager.h"
 
 using namespace std;
 
 class SavingsManager {
 
     UserManager userManager;
+    IncomesManager *incomesManager;
+    const string INCOMES_FILE_NAME;
 
 public:
-    SavingsManager(string fileName) : userManager(fileName) {}
+    SavingsManager(string fileName, string incomesFileName) : userManager(fileName),INCOMES_FILE_NAME(incomesFileName)  {
+    incomesManager = NULL;
+    }
     ;
     ~SavingsManager() {
+
+        delete incomesManager;
+        incomesManager = NULL;
     };
     void registerUser();
-    void signInUser();      //TODO
+    void signInUser();
     void changeLoggedInUserPassword();  //TODO
-    bool checkIfUserIsLoggedIn();   //TODO
+    bool checkIfUserIsLoggedIn();
     void signOutUser(); //TODO
     void addIncome();   //TODO
     void addExpense();  //TODO
     string setBalancePeriod();  //TODO
     void showBalance(); //TODO
-    char choseOptionFromMainMenu(); //TODO
+    char choseOptionFromMainMenu();
     char choseOptionFromUserMenu(); //TODO
 
 };
