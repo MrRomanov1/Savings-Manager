@@ -22,11 +22,13 @@ class IncomesManager {
 public:
     IncomesManager(string incomesFileName, int loggedInUserId):
         fileWithIncomes(incomesFileName), LOGGED_IN_USER_ID(loggedInUserId) {
-
         incomes = fileWithIncomes.loadLoggedInUserIncomesFromFile(LOGGED_IN_USER_ID);
     };
     void addIncome();
     char choseDate();
+    void writeOutIncomesByDate(int beginDate, int endDate);
+    bool compareData(const Income& a,const Income& b);
+    void sortIncomesByDate();
 };
 
 #endif

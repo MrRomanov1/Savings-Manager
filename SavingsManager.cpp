@@ -68,3 +68,45 @@ void SavingsManager::addIncome() {
         getch();
     }
 }
+
+void SavingsManager::showCurrentMonthBalance(){
+
+    if (userManager.checkIfUserIsLoggedIn()) {
+            int beginDate = AuxiliaryMethods::getCurrentMonthBegin();
+            int endDate = AuxiliaryMethods::getEndOfCurrentMonth();
+        incomesManager->writeOutIncomesByDate(beginDate, endDate);
+    } else {
+        cout << "Nie jestes zalogowany" << endl;
+        cout << "Nacisnij dowolny przycisk, aby kontynuowac." << endl;
+        getch();
+    }
+}
+
+void SavingsManager::showLastMonthBalance(){
+
+    if (userManager.checkIfUserIsLoggedIn()) {
+            int beginDate = AuxiliaryMethods::getCurrentMonthBegin();
+            int endDate = AuxiliaryMethods::getEndOfCurrentMonth();
+        incomesManager->writeOutIncomesByDate(beginDate, endDate);
+    } else {
+        cout << "Nie jestes zalogowany" << endl;
+        cout << "Nacisnij dowolny przycisk, aby kontynuowac." << endl;
+        getch();
+    }
+}
+
+void SavingsManager::showChosenPeriodBalance(){
+
+    if (userManager.checkIfUserIsLoggedIn()) {
+            system("cls");
+            cout << "Wprowadz date rozpoczecia bilansu w formacie rrrr-mm-dd: ";
+            int beginDate = AuxiliaryMethods::convertDateToInt(AuxiliaryMethods::getDate());
+            cout << "Wprowadz date zakonczenia bilansu w formacie rrrr-mm-dd: ";
+            int endDate = AuxiliaryMethods::convertDateToInt(AuxiliaryMethods::getDate());
+        incomesManager->writeOutIncomesByDate(beginDate, endDate);
+    } else {
+        cout << "Nie jestes zalogowany" << endl;
+        cout << "Nacisnij dowolny przycisk, aby kontynuowac." << endl;
+        getch();
+    }
+}

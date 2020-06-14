@@ -7,7 +7,6 @@ void IncomesManager::addIncome() {
     cout << " >>> DODAWANIE NOWEGO PRZYCHODU <<<" << endl << endl;
     income = insertNewIncome();
     incomes.push_back(income);
-
     if (fileWithIncomes.addIncomeToFile(income)) {
         cout << "Dodano nowy przychod" << endl;
         cout << "Nacisnij dowolny przycisk, aby kontynuowac." << endl;
@@ -35,12 +34,14 @@ Income IncomesManager::insertNewIncome() {
     choice = choseDate();
 
     switch (choice) {
-            case '1':
-                date = AuxiliaryMethods::getCurrentDate();
-                break;
-            case '2':
-                date = AuxiliaryMethods::getDate();
-               break;
+    case '1':
+        date = AuxiliaryMethods::getCurrentDate();
+        break;
+    case '2':
+        system("cls");
+        cout << "Wprowadz date w formacie rrrr-mm-dd w zakresie od 2000-01-01 do konca biezacego miesiaca: ";
+        date = AuxiliaryMethods::getDate();
+        break;
     }
 
     numericDate = AuxiliaryMethods::convertDateToInt(date);
@@ -67,4 +68,28 @@ char IncomesManager::choseDate() {
     choice = AuxiliaryMethods::getCharacter();
 
     return choice;
+}
+
+void IncomesManager::sortIncomesByDate(){
+
+    sort(incomes.begin(), incomes.end(), [] ( auto && lhs, auto && rhs ) {
+        return lhs.getDate() < rhs.getDate();
+    });
+}
+
+void IncomesManager::writeOutIncomesByDate(int beginDate, int endDate) {
+
+    system("cls");
+
+    Income income;
+    sortIncomesByDate();
+
+    for (vector <Income>::iterator itr = incomes.begin(); itr < incomes.end(); itr++) {
+
+        if ((itr -> getDate() >= beginDate ) && (itr -> getDate() <= endDate)) {
+            cout << AuxiliaryMethods::convertDateToStringWithDashes(itr -> getDate()) << endl << itr -> getAmount() << endl;
+        }
+    }
+    cout << "Nacisnij dowolny przycisk, aby kontynuowac." << endl;
+    getch();
 }
