@@ -15,7 +15,7 @@ class SavingsManager {
 
 public:
     SavingsManager(string fileName, string incomesFileName) : userManager(fileName),INCOMES_FILE_NAME(incomesFileName)  {
-    incomesManager = NULL;
+        incomesManager = NULL;
     }
     ;
     ~SavingsManager() {
@@ -28,10 +28,11 @@ public:
     void changeLoggedInUserPassword();  //TODO
     bool checkIfUserIsLoggedIn();
     void signOutUser(); //TODO
-    void addIncome();   //TODO
+    void addIncome();
     void addExpense();  //TODO
-    string setBalancePeriod();  //TODO
-    void showBalance(); //TODO
+    void showCurrentMonthBalance();
+    void showLastMonthBalance();//TODO
+    void showChosenPeriodBalance();
     char choseOptionFromMainMenu();
     char choseOptionFromUserMenu(); //TODO
 

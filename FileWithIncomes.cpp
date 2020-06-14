@@ -21,8 +21,7 @@ bool FileWithIncomes::addIncomeToFile(Income income) {
 
     if (xml.Save("incomes.xml")) {
         return true;
-    }
-    else
+    } else
         return false;
 }
 
@@ -30,26 +29,33 @@ vector <Income> FileWithIncomes::loadLoggedInUserIncomesFromFile(int loggedInUse
 
     Income income;
     vector <Income> incomes;
-
+    string dane = "";
     xml.ResetPos();
+
     if (checkIfFileExists()) {
+
         xml.FindElem();
         xml.IntoElem();
+
         while (xml.FindElem("Income")) {
-            xml.FindChildElem("UserID");
-            if ((AuxiliaryMethods::convertStringToInt(xml.GetChildData()) == loggedInUserId)) {
+
+            xml.IntoElem();
+            xml.FindElem("UserId");
+
+            if (AuxiliaryMethods::convertStringToInt(xml.GetData()) == loggedInUserId) {
 
                 income.setUserId(loggedInUserId);
-                xml.FindChildElem("IncomeID");
-                income.setIncomeId(AuxiliaryMethods::convertStringToInt(xml.GetChildData()));
-                xml.FindChildElem("Date");
-                income.setDate(AuxiliaryMethods::convertStringToInt(xml.GetChildData()));
-                xml.FindChildElem("Item");
-                income.setItem(xml.GetChildData());
-                xml.FindChildElem("Amount");
-                income.setAmount(AuxiliaryMethods::convertStringToDouble(xml.GetChildData()));
+                xml.FindElem("IncomeID");
+                income.setIncomeId(AuxiliaryMethods::convertStringToInt(xml.GetData()));
+                xml.FindElem("Date");
+                income.setDate(AuxiliaryMethods::convertDateToInt(xml.GetData()));
+                xml.FindElem("Item");
+                income.setItem(xml.GetData());
+                xml.FindElem("Amount");
+                income.setAmount(AuxiliaryMethods::convertStringToDouble(xml.GetData()));
                 incomes.push_back(income);
             }
+            xml.OutOfElem();
             lastIncomeId++;
         }
     }

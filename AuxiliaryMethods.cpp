@@ -169,11 +169,9 @@ string AuxiliaryMethods::convertDateToStringWithDashes(int date) {
 
 string AuxiliaryMethods::getDate() {
 
-    system("cls");
     int dateChecker = 0;
     int dateInInt = 0;
 
-    cout << "Wprowadz date w formacie rrrr-mm-dd w zakresie od 2000-01-01 do konca biezacego miesiaca: ";
     while (true) {
 
         string date = loadLine();
@@ -280,4 +278,24 @@ bool AuxiliaryMethods::checkIfDateIsValid(string date) {
         return false;
     } else
         return true;
+}
+
+int AuxiliaryMethods::getCurrentMonthBegin() {
+
+    string currentDate = getCurrentDate();
+    string days = "01";
+    string years = "";
+    string months = "";
+    string boundaryDate = "";
+
+    for (int i = 0; i < currentDate.length(); i++) {
+        if (i < 4) {
+            years = years + currentDate[i];
+        } else if (i == 5 || i == 6) {
+            months = months + currentDate[i];
+        }
+    }
+    boundaryDate = years+months+days;
+    int boundaryNumericDate = convertStringToInt(boundaryDate);
+    return boundaryNumericDate;
 }

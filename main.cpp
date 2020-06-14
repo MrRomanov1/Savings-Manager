@@ -41,12 +41,13 @@ int main() {
                 ;
                 break;
             case '3':
-                ;
+                savingsManager.showCurrentMonthBalance();
                 break;
             case '4':
                 ;
                 break;
             case '5':
+                savingsManager.showChosenPeriodBalance();
                 ;
                 break;
             case '6':

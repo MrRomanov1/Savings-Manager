@@ -29,5 +29,6 @@ public:
     static bool checkIfDateIsValid(string date);
     static int getLastDayOfTheMonth(int month, int year);
     static int getEndOfCurrentMonth();
+    static int getCurrentMonthBegin();
 };
 #endif
