@@ -2,7 +2,6 @@
 #define XMLFILE_H
 
 #include <iostream>
-#include <fstream>
 
 #include "User.h"
 #include "AuxiliaryMethods.h"

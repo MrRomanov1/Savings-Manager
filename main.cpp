@@ -44,7 +44,7 @@ int main() {
                 savingsManager.showCurrentMonthBalance();
                 break;
             case '4':
-                ;
+                savingsManager.showLastMonthBalance();
                 break;
             case '5':
                 savingsManager.showChosenPeriodBalance();
