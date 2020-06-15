@@ -5,7 +5,6 @@
 #include <sstream>
 #include <algorithm>
 #include <iomanip>
-#include <time.h>
 
 using namespace std;
 
@@ -22,13 +21,5 @@ public:
     static string loadLine();
     static string checkPasswordRequirements();
     static double getDouble();
-    static string getCurrentDate();
-    static int convertDateToInt(string date);
-    static string convertDateToStringWithDashes(int date);
-    static string getDate();
-    static bool checkIfDateIsValid(string date);
-    static int getLastDayOfTheMonth(int month, int year);
-    static int getEndOfCurrentMonth();
-    static int getCurrentMonthBegin();
 };
 #endif

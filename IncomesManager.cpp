@@ -12,7 +12,7 @@ void IncomesManager::addIncome() {
         cout << "Nacisnij dowolny przycisk, aby kontynuowac." << endl;
         getch();
     } else {
-        cout << "Nie udalo sie dodac adresata do pliku." << endl;
+        cout << "Nie udalo sie dodac przychodu do pliku." << endl;
         cout << "Nacisnij dowolny przycisk, aby kontynuowac." << endl;
         getch();
     }
@@ -29,24 +29,22 @@ Income IncomesManager::insertNewIncome() {
     income.setIncomeId((fileWithIncomes.getLastIncomeId()+1));
     income.setUserId(LOGGED_IN_USER_ID);
 
-    cout << "Podaj date przychodu: ";
-
     choice = choseDate();
 
     switch (choice) {
     case '1':
-        date = AuxiliaryMethods::getCurrentDate();
+        date = Date::getCurrentDate();
         break;
     case '2':
         system("cls");
         cout << "Wprowadz date w formacie rrrr-mm-dd w zakresie od 2000-01-01 do konca biezacego miesiaca: ";
-        date = AuxiliaryMethods::getDate();
+        date = Date::getDate();
         break;
     }
 
-    numericDate = AuxiliaryMethods::convertDateToInt(date);
+    numericDate = Date::convertDateToInt(date);
     income.setDate(numericDate);
-    cout << "Podaj czego dotyczy przychod: ";
+    cout << "Podaj zrodlo przychodu: ";
     item = AuxiliaryMethods::loadLine();
     income.setItem(item);
     cout << "Podaj wysokosc przychodu: ";
@@ -59,11 +57,11 @@ char IncomesManager::choseDate() {
     char choice;
 
     system("cls");
-    cout << "    >>> MENU  GLOWNE <<<" << endl;
-    cout << "---------------------------" << endl;
+    cout << "Podaj date przychodu:" << endl;
+    cout << "---------------------" << endl;
     cout << "1. Dzis" << endl;
     cout << "2. Inny dzien" << endl;
-    cout << "---------------------------" << endl;
+    cout << "---------------------" << endl;
     cout << "Twoj wybor: ";
     choice = AuxiliaryMethods::getCharacter();
 
@@ -80,15 +78,33 @@ void IncomesManager::sortIncomesByDate(){
 void IncomesManager::writeOutIncomesByDate(int beginDate, int endDate) {
 
     system("cls");
+    int incomeCounter = 0;
 
     Income income;
     sortIncomesByDate();
+    if (!incomes.empty()) {
+        cout << "+----------------------------------------------------+" << endl;
+        cout << setw(20) << "| Zestawienie przychodow od " << Date::convertDateToStringWithDashes(beginDate) << " do " << Date::convertDateToStringWithDashes(endDate) << " |"<<endl;
+        cout << "+----------------------------------------------------+" << endl;
+        cout << setw(15) << left << "| Data" << setw(20) << left << "Zrodlo przychodu" << setw(15) << left << "Wartosc przychodu |" << endl;
+        cout << "+----------------------------------------------------+" << endl;
 
-    for (vector <Income>::iterator itr = incomes.begin(); itr < incomes.end(); itr++) {
+        for (vector <Income>::iterator itr = incomes.begin(); itr < incomes.end(); itr++) {
 
-        if ((itr -> getDate() >= beginDate ) && (itr -> getDate() <= endDate)) {
-            cout << AuxiliaryMethods::convertDateToStringWithDashes(itr -> getDate()) << endl << itr -> getAmount() << endl;
+            if ((itr -> getDate() >= beginDate ) && (itr -> getDate() <= endDate)) {
+                cout << "| " <<setw(15) << left << Date::convertDateToStringWithDashes(itr -> getDate()) << setw(20) << left << itr -> getItem() << setw(15) << left << itr -> getAmount() << " |" << endl;
+                cout << "+----------------------------------------------------+" << endl;
+                incomeCounter++;
+            }
         }
+        if (incomeCounter == 0) {
+            cout << "|     Nie posiadasz przychodow z podanego okresu.    |" << endl;
+            cout << "+----------------------------------------------------+" << endl;
+        }
+    } else {
+        cout << "+----------------------------------------------+" << endl;
+        cout << "| Nie posiadasz zadnych zapisanych przychodow. |" << endl;
+        cout << "+----------------------------------------------+" << endl;
     }
     cout << "Nacisnij dowolny przycisk, aby kontynuowac." << endl;
     getch();

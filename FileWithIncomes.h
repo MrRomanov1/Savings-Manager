@@ -7,6 +7,7 @@
 #include "Income.h"
 #include "AuxiliaryMethods.h"
 #include "XmlFile.h"
+#include "Date.h"
 
 using namespace std;
 

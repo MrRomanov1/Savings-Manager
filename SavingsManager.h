@@ -31,7 +31,7 @@ public:
     void addIncome();
     void addExpense();  //TODO
     void showCurrentMonthBalance();
-    void showLastMonthBalance();//TODO
+    void showLastMonthBalance();
     void showChosenPeriodBalance();
     char choseOptionFromMainMenu();
     char choseOptionFromUserMenu(); //TODO

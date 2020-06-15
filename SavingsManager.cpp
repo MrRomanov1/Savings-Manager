@@ -72,8 +72,8 @@ void SavingsManager::addIncome() {
 void SavingsManager::showCurrentMonthBalance(){
 
     if (userManager.checkIfUserIsLoggedIn()) {
-            int beginDate = AuxiliaryMethods::getCurrentMonthBegin();
-            int endDate = AuxiliaryMethods::getEndOfCurrentMonth();
+            int beginDate = Date::getCurrentMonthBegin();
+            int endDate = Date::getEndOfCurrentMonth();
         incomesManager->writeOutIncomesByDate(beginDate, endDate);
     } else {
         cout << "Nie jestes zalogowany" << endl;
@@ -85,8 +85,8 @@ void SavingsManager::showCurrentMonthBalance(){
 void SavingsManager::showLastMonthBalance(){
 
     if (userManager.checkIfUserIsLoggedIn()) {
-            int beginDate = AuxiliaryMethods::getCurrentMonthBegin();
-            int endDate = AuxiliaryMethods::getEndOfCurrentMonth();
+            int beginDate = Date::getLastMonthBegin();
+            int endDate = Date::getLastMonthEnd();
         incomesManager->writeOutIncomesByDate(beginDate, endDate);
     } else {
         cout << "Nie jestes zalogowany" << endl;
@@ -100,9 +100,9 @@ void SavingsManager::showChosenPeriodBalance(){
     if (userManager.checkIfUserIsLoggedIn()) {
             system("cls");
             cout << "Wprowadz date rozpoczecia bilansu w formacie rrrr-mm-dd: ";
-            int beginDate = AuxiliaryMethods::convertDateToInt(AuxiliaryMethods::getDate());
+            int beginDate = Date::convertDateToInt(Date::getDate());
             cout << "Wprowadz date zakonczenia bilansu w formacie rrrr-mm-dd: ";
-            int endDate = AuxiliaryMethods::convertDateToInt(AuxiliaryMethods::getDate());
+            int endDate = Date::convertDateToInt(Date::getDate());
         incomesManager->writeOutIncomesByDate(beginDate, endDate);
     } else {
         cout << "Nie jestes zalogowany" << endl;
