@@ -8,7 +8,7 @@ int main() {
 
     char choice;
 
-    SavingsManager savingsManager("users.xml", "incomes.xml");
+    SavingsManager savingsManager("users.xml", "incomes.xml", "expenses.xml");
 
     while (true) {
         if (!savingsManager.checkIfUserIsLoggedIn()) {
@@ -38,6 +38,7 @@ int main() {
                 savingsManager.addIncome();
                 break;
             case '2':
+                savingsManager.addExpense();
                 ;
                 break;
             case '3':

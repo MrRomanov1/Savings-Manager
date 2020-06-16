@@ -68,7 +68,7 @@ char IncomesManager::choseDate() {
     return choice;
 }
 
-void IncomesManager::sortIncomesByDate(){
+void IncomesManager::sortIncomesByDate() {
 
     sort(incomes.begin(), incomes.end(), [] ( auto && lhs, auto && rhs ) {
         return lhs.getDate() < rhs.getDate();
@@ -77,8 +77,8 @@ void IncomesManager::sortIncomesByDate(){
 
 void IncomesManager::writeOutIncomesByDate(int beginDate, int endDate) {
 
-    system("cls");
     int incomeCounter = 0;
+    incomesTotal = 0;
 
     Income income;
     sortIncomesByDate();
@@ -95,8 +95,11 @@ void IncomesManager::writeOutIncomesByDate(int beginDate, int endDate) {
                 cout << "| " <<setw(15) << left << Date::convertDateToStringWithDashes(itr -> getDate()) << setw(20) << left << itr -> getItem() << setw(15) << left << itr -> getAmount() << " |" << endl;
                 cout << "+----------------------------------------------------+" << endl;
                 incomeCounter++;
+                incomesTotal += itr -> getAmount();
             }
         }
+        cout << "|" <<setw(15) << left << " SUMA PRZYCHODOW" << setw(20) << left << "" << setw(15) << left << incomesTotal << " |"  << endl;
+        cout << "+----------------------------------------------------+" << endl;
         if (incomeCounter == 0) {
             cout << "|     Nie posiadasz przychodow z podanego okresu.    |" << endl;
             cout << "+----------------------------------------------------+" << endl;
@@ -106,6 +109,8 @@ void IncomesManager::writeOutIncomesByDate(int beginDate, int endDate) {
         cout << "| Nie posiadasz zadnych zapisanych przychodow. |" << endl;
         cout << "+----------------------------------------------+" << endl;
     }
-    cout << "Nacisnij dowolny przycisk, aby kontynuowac." << endl;
-    getch();
+}
+
+double IncomesManager::getTotalIncomes() {
+    return incomesTotal;
 }

@@ -11,8 +11,8 @@ bool SavingsManager::checkIfUserIsLoggedIn() {
 void SavingsManager::signInUser() {
     userManager.signInUser();
     if (userManager.checkIfUserIsLoggedIn()) {
-
         incomesManager = new IncomesManager(INCOMES_FILE_NAME, userManager.getLoggedInUserId());
+        expensesManager = new ExpensesManager(EXPENSES_FILE_NAME, userManager.getLoggedInUserId());
     }
 }
 
@@ -36,6 +36,8 @@ void SavingsManager::signOutUser() {
     userManager.signOutUser();
     delete incomesManager;
     incomesManager = NULL;
+    delete expensesManager;
+    expensesManager = NULL;
 }
 
 char SavingsManager::choseOptionFromUserMenu() {
@@ -69,12 +71,9 @@ void SavingsManager::addIncome() {
     }
 }
 
-void SavingsManager::showCurrentMonthBalance(){
-
+void SavingsManager::addExpense() {
     if (userManager.checkIfUserIsLoggedIn()) {
-            int beginDate = Date::getCurrentMonthBegin();
-            int endDate = Date::getEndOfCurrentMonth();
-        incomesManager->writeOutIncomesByDate(beginDate, endDate);
+        expensesManager->addExpense();
     } else {
         cout << "Nie jestes zalogowany" << endl;
         cout << "Nacisnij dowolny przycisk, aby kontynuowac." << endl;
@@ -82,12 +81,18 @@ void SavingsManager::showCurrentMonthBalance(){
     }
 }
 
-void SavingsManager::showLastMonthBalance(){
+void SavingsManager::showCurrentMonthBalance() {
 
     if (userManager.checkIfUserIsLoggedIn()) {
-            int beginDate = Date::getLastMonthBegin();
-            int endDate = Date::getLastMonthEnd();
+        int beginDate = Date::getCurrentMonthBegin();
+        int endDate = Date::getEndOfCurrentMonth();
+        system("cls");
         incomesManager->writeOutIncomesByDate(beginDate, endDate);
+        cout << endl;
+        expensesManager->writeOutExpensesByDate(beginDate, endDate);
+        showBalanceTotal();
+        cout << "Nacisnij dowolny przycisk, aby kontynuowac." << endl;
+        getch();
     } else {
         cout << "Nie jestes zalogowany" << endl;
         cout << "Nacisnij dowolny przycisk, aby kontynuowac." << endl;
@@ -95,18 +100,57 @@ void SavingsManager::showLastMonthBalance(){
     }
 }
 
-void SavingsManager::showChosenPeriodBalance(){
+void SavingsManager::showLastMonthBalance() {
 
     if (userManager.checkIfUserIsLoggedIn()) {
-            system("cls");
-            cout << "Wprowadz date rozpoczecia bilansu w formacie rrrr-mm-dd: ";
-            int beginDate = Date::convertDateToInt(Date::getDate());
-            cout << "Wprowadz date zakonczenia bilansu w formacie rrrr-mm-dd: ";
-            int endDate = Date::convertDateToInt(Date::getDate());
+        int beginDate = Date::getLastMonthBegin();
+        int endDate = Date::getLastMonthEnd();
+        system("cls");
         incomesManager->writeOutIncomesByDate(beginDate, endDate);
+        cout << endl;
+        expensesManager->writeOutExpensesByDate(beginDate, endDate);
+        showBalanceTotal();
+        cout << "Nacisnij dowolny przycisk, aby kontynuowac." << endl;
+        getch();
     } else {
         cout << "Nie jestes zalogowany" << endl;
         cout << "Nacisnij dowolny przycisk, aby kontynuowac." << endl;
         getch();
+    }
+}
+
+void SavingsManager::showChosenPeriodBalance() {
+
+    if (userManager.checkIfUserIsLoggedIn()) {
+        system("cls");
+        cout << "Wprowadz date rozpoczecia bilansu w formacie rrrr-mm-dd: ";
+        int beginDate = Date::convertDateToInt(Date::getDate());
+        cout << "Wprowadz date zakonczenia bilansu w formacie rrrr-mm-dd: ";
+        int endDate = Date::convertDateToInt(Date::getDate());
+        system("cls");
+        incomesManager->writeOutIncomesByDate(beginDate, endDate);
+        cout << endl;
+        expensesManager->writeOutExpensesByDate(beginDate, endDate);
+        showBalanceTotal();
+        cout << "Nacisnij dowolny przycisk, aby kontynuowac." << endl;
+        getch();
+    } else {
+        cout << "Nie jestes zalogowany" << endl;
+        cout << "Nacisnij dowolny przycisk, aby kontynuowac." << endl;
+        getch();
+    }
+}
+
+void SavingsManager::showBalanceTotal() {
+
+    double incomesTotal = incomesManager-> getTotalIncomes();
+    double expensesTotal = expensesManager->getTotalExpenses();
+
+    if (incomesTotal != 0 || expensesTotal != 0) {
+    double balanceTotal = incomesTotal - expensesTotal;
+    cout << endl;
+    cout << "+----------------------------------------------------+" << endl;
+    cout << "|" <<setw(15) << left << " BILANS Z DANEGO OKRESU" << setw(13) << left << "" << setw(15) << left << balanceTotal << " |"  << endl;
+    cout << "+----------------------------------------------------+" << endl;
     }
 }
