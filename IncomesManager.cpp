@@ -105,9 +105,9 @@ void IncomesManager::writeOutIncomesByDate(int beginDate, int endDate) {
             cout << "+----------------------------------------------------+" << endl;
         }
     } else {
-        cout << "+----------------------------------------------+" << endl;
-        cout << "| Nie posiadasz zadnych zapisanych przychodow. |" << endl;
-        cout << "+----------------------------------------------+" << endl;
+        cout << "+----------------------------------------------------+" << endl;
+        cout << "|    Nie posiadasz zadnych zapisanych przychodow.    |" << endl;
+        cout << "+----------------------------------------------------+" << endl;
     }
 }
 

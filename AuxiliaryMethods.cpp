@@ -100,7 +100,7 @@ string AuxiliaryMethods::checkPasswordRequirements() {
     int passwordLength = 0;
 
     while (true) {
-        getline(cin, password);
+        password = getPassword();
         passwordLength = password.length();
         int digits = 0;
         int uppercase = 0;
@@ -123,4 +123,19 @@ string AuxiliaryMethods::checkPasswordRequirements() {
         }
     }
     return password;
+}
+
+string AuxiliaryMethods::getPassword() {
+
+    cin.sync();
+    string password = "";
+    char character;
+    character = getch();
+    while (character != 13) {
+        password.push_back(character);
+        cout << '*';
+        character = getch();
+    }
+    cout << endl;
+return password;
 }

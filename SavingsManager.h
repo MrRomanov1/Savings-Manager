@@ -20,8 +20,8 @@ public:
     SavingsManager(string fileName, string incomesFileName, string expensesFileName) : userManager(fileName),INCOMES_FILE_NAME(incomesFileName), EXPENSES_FILE_NAME(expensesFileName) {
         incomesManager = NULL;
         expensesManager = NULL;
-    }
-    ;
+    };
+
     ~SavingsManager() {
 
         delete incomesManager;
@@ -43,7 +43,6 @@ public:
     char choseOptionFromMainMenu();
     char choseOptionFromUserMenu();
     void showBalanceTotal();
-
 };
 
 #endif
