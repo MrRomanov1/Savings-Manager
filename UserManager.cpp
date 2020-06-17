@@ -103,3 +103,31 @@ void UserManager::signOutUser() {
 int UserManager::getLoggedInUserId() {
     return loggedInUserId;
 }
+
+void UserManager::changeLoggedInUserPassword() {
+    system("cls");
+    string newPassword = "", oldPassword = "";
+
+    vector <User>::iterator itr = users.begin();
+    cout << "Wprowadz nowe haslo, ktore sklada sie z co najmniej 6 znakow (w tym duzej litery i cyfry): " << endl;
+    while (itr != users.end()) {
+        if (itr -> getId() == loggedInUserId) {
+            oldPassword = itr -> getPassword();
+            while (true) {
+
+                newPassword = AuxiliaryMethods::checkPasswordRequirements();
+                if (newPassword == oldPassword) {
+                    system("cls");
+                    cout << "Haslo musi roznic sie od poprzedniego. Wprowadz haslo ponownie." << endl;
+                } else {
+                    system("cls");
+                    itr -> setPassword(newPassword);
+                    fileWithUsers.changeUserPassword(newPassword, loggedInUserId);
+                    cout << "Haslo zostalo zmienione. Nacisnij dowolny przycisk, aby kontynuowac.";
+                    getch();
+                    return;
+                }
+            }
+        }
+    }
+}

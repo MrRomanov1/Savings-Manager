@@ -17,7 +17,7 @@ void FileWithUsers::addUserToFile(User user) {
     xml.AddElem("Login", user.getLogin());
     xml.AddElem("Password",user.getPassword());
 
-    xml.Save("users.xml");
+    xml.Save(getFileName());
 }
 
 vector <User> FileWithUsers::loadUsersFromFile() {
@@ -46,4 +46,20 @@ vector <User> FileWithUsers::loadUsersFromFile() {
         }
     }
     return users;
+}
+
+void FileWithUsers::changeUserPassword(string newPassword, int loggedInUserId) {
+    xml.ResetPos();
+    if (checkIfFileExists()) {
+        xml.FindElem();
+        xml.IntoElem();
+        while (xml.FindElem("User")) {
+            xml.FindChildElem("UserID");
+            if (xml.GetChildData() == AuxiliaryMethods::convertIntToString(loggedInUserId)) {
+                xml.FindChildElem("Password");
+                xml.SetChildData(newPassword);
+            }
+        }
+    }
+    xml.Save(getFileName());
 }

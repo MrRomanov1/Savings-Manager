@@ -32,7 +32,7 @@ public:
 
     void registerUser();
     void signInUser();
-    void changeLoggedInUserPassword();  //TODO
+    void changeLoggedInUserPassword();
     bool checkIfUserIsLoggedIn();
     void signOutUser();
     void addIncome();

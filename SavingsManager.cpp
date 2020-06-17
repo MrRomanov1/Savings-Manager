@@ -16,6 +16,12 @@ void SavingsManager::signInUser() {
     }
 }
 
+void SavingsManager::changeLoggedInUserPassword() {
+    if (userManager.checkIfUserIsLoggedIn()) {
+        userManager.changeLoggedInUserPassword();
+    }
+}
+
 char SavingsManager::choseOptionFromMainMenu() {
     char choice;
 
@@ -147,10 +153,10 @@ void SavingsManager::showBalanceTotal() {
     double expensesTotal = expensesManager->getTotalExpenses();
 
     if (incomesTotal != 0 || expensesTotal != 0) {
-    double balanceTotal = incomesTotal - expensesTotal;
-    cout << endl;
-    cout << "+----------------------------------------------------+" << endl;
-    cout << "|" <<setw(15) << left << " BILANS Z DANEGO OKRESU" << setw(13) << left << "" << setw(15) << left << balanceTotal << " |"  << endl;
-    cout << "+----------------------------------------------------+" << endl;
+        double balanceTotal = incomesTotal - expensesTotal;
+        cout << endl;
+        cout << "+----------------------------------------------------+" << endl;
+        cout << "|" <<setw(15) << left << " BILANS Z DANEGO OKRESU" << setw(13) << left << "" << setw(15) << left << balanceTotal << " |"  << endl;
+        cout << "+----------------------------------------------------+" << endl;
     }
 }

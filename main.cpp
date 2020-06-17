@@ -39,7 +39,6 @@ int main() {
                 break;
             case '2':
                 savingsManager.addExpense();
-                ;
                 break;
             case '3':
                 savingsManager.showCurrentMonthBalance();
@@ -49,10 +48,9 @@ int main() {
                 break;
             case '5':
                 savingsManager.showChosenPeriodBalance();
-                ;
                 break;
             case '6':
-                ;
+                savingsManager.changeLoggedInUserPassword();
                 break;
             case '7':
                 savingsManager.signOutUser();

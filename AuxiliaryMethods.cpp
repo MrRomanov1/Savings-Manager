@@ -106,6 +106,7 @@ string AuxiliaryMethods::checkPasswordRequirements() {
         int uppercase = 0;
 
         if (passwordLength < 6) {
+            system("cls");
             cout << "Wprowadzone haslo jest za krotkie. Wprowadz haslo ponownie: " << endl;
         } else {
 
@@ -117,6 +118,7 @@ string AuxiliaryMethods::checkPasswordRequirements() {
                 }
             }
             if ( (digits < 1 ) || ( uppercase < 1) ) {
+                system("cls");
                 cout << "Wprowadzone haslo nie zawiera wielkiej litery lub cyfer. Wprowadz haslo ponownie: " << endl;
             } else
                 break;
@@ -131,11 +133,23 @@ string AuxiliaryMethods::getPassword() {
     string password = "";
     char character;
     character = getch();
+
     while (character != 13) {
-        password.push_back(character);
-        cout << '*';
-        character = getch();
+
+        if (character == 8) {
+            if (!password.empty()) {
+                password.resize(password.size()-1);
+                cout << '\b';
+                character = getch();
+            }
+        } else if (character > 20 && character < 127) {
+            password.push_back(character);
+            cout << '*';
+            character = getch();
+        } else {
+            character = getch();
+        }
     }
     cout << endl;
-return password;
+    return password;
 }
