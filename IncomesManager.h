@@ -20,15 +20,15 @@ class IncomesManager {
     double incomesTotal;
 
     Income insertNewIncome();
-    void writeOutAllIncomes();
+    char choseDate();
 public:
     IncomesManager(string incomesFileName, int loggedInUserId):
         fileWithIncomes(incomesFileName), LOGGED_IN_USER_ID(loggedInUserId) {
         incomes = fileWithIncomes.loadLoggedInUserIncomesFromFile(LOGGED_IN_USER_ID);
         incomesTotal = 0;
     };
+
     void addIncome();
-    char choseDate();
     void writeOutIncomesByDate(int beginDate, int endDate);
     void sortIncomesByDate();
     double getTotalIncomes();

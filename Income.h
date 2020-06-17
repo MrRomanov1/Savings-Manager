@@ -25,7 +25,6 @@ public:
     void setItem (string newItem);
     void setAmount (double newAmount);
 
-
     int getUserId();
     int getIncomeId();
     int getDate();

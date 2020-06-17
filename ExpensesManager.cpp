@@ -37,6 +37,7 @@ Expense ExpensesManager::insertNewExpense() {
         break;
     case '2':
         system("cls");
+        cout << " >>> DODAWANIE NOWEGO WYDATKU <<<" << endl << endl;
         cout << "Wprowadz date w formacie rrrr-mm-dd w zakresie od 2000-01-01 do konca biezacego miesiaca: ";
         date = Date::getDate();
         break;
@@ -44,6 +45,8 @@ Expense ExpensesManager::insertNewExpense() {
 
     numericDate = Date::convertDateToInt(date);
     expense.setDate(numericDate);
+    system("cls");
+    cout << " >>> DODAWANIE NOWEGO WYDATKU <<<" << endl << endl;
     cout << "Podaj zrodlo wydatku: ";
     item = AuxiliaryMethods::loadLine();
     expense.setItem(item);
@@ -56,7 +59,6 @@ Expense ExpensesManager::insertNewExpense() {
 char ExpensesManager::choseDate() {
     char choice;
 
-    system("cls");
     cout << "Podaj date wydatku:" << endl;
     cout << "---------------------" << endl;
     cout << "1. Dzis" << endl;
