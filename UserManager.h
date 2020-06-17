@@ -14,11 +14,10 @@ class UserManager {
     int loggedInUserId;
     vector <User> users;
     FileWithUsers fileWithUsers;
+
     User insertNewUserData();
     int getNewUserId();
     bool checkIfLoginExists(string login);
-    bool checkIfNewPasswordIsSameAsOld();
-
 public:
 
     UserManager(string fileName) : fileWithUsers(fileName) {
@@ -27,7 +26,6 @@ public:
     };
     void registerUser();
     void signInUser();
-
     bool checkIfUserIsLoggedIn();
     void changeLoggedInUserPassword();
     void signOutUser();

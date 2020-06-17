@@ -15,9 +15,6 @@ class FileWithIncomes : public XmlFile {
 
     int lastIncomeId;
 
-    Income getIncomeData();
-    int getUserId();
-
 public:
     FileWithIncomes(string fileName): XmlFile(fileName) {
         lastIncomeId = 0;
@@ -26,7 +23,5 @@ public:
     bool addIncomeToFile(Income income);
     vector <Income> loadLoggedInUserIncomesFromFile(int loggedInUserId);
     int getLastIncomeId();
-    void setLastIncomeId();
-
 };
 #endif

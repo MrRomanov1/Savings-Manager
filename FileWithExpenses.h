@@ -15,9 +15,6 @@ class FileWithExpenses : public XmlFile {
 
     int lastExpenseId;
 
-    Expense getIncomeData();
-    int getUserId();
-
 public:
     FileWithExpenses(string fileName): XmlFile(fileName) {
         lastExpenseId = 0;
@@ -26,7 +23,5 @@ public:
     bool addExpenseToFile(Expense expense);
     vector <Expense> loadLoggedInUserExpensesFromFile(int loggedInUserId);
     int getLastExpenseId();
-    void setLastExpenseId();
-
 };
 #endif

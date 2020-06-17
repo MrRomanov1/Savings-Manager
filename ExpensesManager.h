@@ -20,7 +20,7 @@ class ExpensesManager {
     double expensesTotal;
 
     Expense insertNewExpense();
-    void writeOutAllIncomes();
+    char choseDate();
 public:
     ExpensesManager(string expensesFileName, int loggedInUserId):
         fileWithExpenses(expensesFileName), LOGGED_IN_USER_ID(loggedInUserId) {
@@ -28,7 +28,6 @@ public:
         expensesTotal = 0;
     };
     void addExpense();
-    char choseDate();
     void writeOutExpensesByDate(int beginDate, int endDate);
     void sortExpensesByDate();
     double getTotalExpenses();

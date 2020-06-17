@@ -36,7 +36,9 @@ Income IncomesManager::insertNewIncome() {
         date = Date::getCurrentDate();
         break;
     case '2':
+
         system("cls");
+        cout << " >>> DODAWANIE NOWEGO PRZYCHODU <<<" << endl << endl;
         cout << "Wprowadz date w formacie rrrr-mm-dd w zakresie od 2000-01-01 do konca biezacego miesiaca: ";
         date = Date::getDate();
         break;
@@ -44,6 +46,8 @@ Income IncomesManager::insertNewIncome() {
 
     numericDate = Date::convertDateToInt(date);
     income.setDate(numericDate);
+    system("cls");
+    cout << " >>> DODAWANIE NOWEGO PRZYCHODU <<<" << endl << endl;
     cout << "Podaj zrodlo przychodu: ";
     item = AuxiliaryMethods::loadLine();
     income.setItem(item);
@@ -56,7 +60,6 @@ Income IncomesManager::insertNewIncome() {
 char IncomesManager::choseDate() {
     char choice;
 
-    system("cls");
     cout << "Podaj date przychodu:" << endl;
     cout << "---------------------" << endl;
     cout << "1. Dzis" << endl;
