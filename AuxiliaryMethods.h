@@ -5,6 +5,7 @@
 #include <sstream>
 #include <algorithm>
 #include <iomanip>
+#include <conio.h>
 
 using namespace std;
 
@@ -21,5 +22,6 @@ public:
     static string loadLine();
     static string checkPasswordRequirements();
     static double getDouble();
+    static string getPassword();
 };
 #endif

@@ -66,7 +66,7 @@ void UserManager::signInUser() {
         if (itr -> getLogin() == login) {
             for (int attemptCount = 3; attemptCount > 0; attemptCount--) {
                 cout << "Podaj haslo. Pozostalo prob: " << attemptCount << ": ";
-                password = AuxiliaryMethods::loadLine();
+                password = AuxiliaryMethods::getPassword();
 
                 if (itr -> getPassword() == password) {
                     loggedInUserId = itr -> getId();
