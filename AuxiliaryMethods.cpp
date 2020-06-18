@@ -131,25 +131,21 @@ string AuxiliaryMethods::getPassword() {
 
     cin.sync();
     string password = "";
-    char character;
-    character = getch();
+    int character;
 
-    while (character != 13) {
+    while (character = getch()) {
 
-        if (character == 8) {
-            if (!password.empty()) {
-                password.resize(password.size()-1);
-                cout << '\b';
-                character = getch();
+        if (character == 13) {
+            cout << endl;
+            return password;
+        } else if(character==8) {
+            if(password.length()>0) {
+                cout<<"\b \b";
+                password.erase(password.length()-1);
             }
-        } else if (character > 20 && character < 127) {
-            password.push_back(character);
-            cout << '*';
-            character = getch();
         } else {
-            character = getch();
+            cout<<"*";
+            password += character;
         }
     }
-    cout << endl;
-    return password;
 }
