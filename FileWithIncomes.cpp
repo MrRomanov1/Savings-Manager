@@ -19,10 +19,7 @@ bool FileWithIncomes::addIncomeToFile(Income income) {
 
     lastIncomeId++;
 
-    if (xml.Save("incomes.xml")) {
-        return true;
-    } else
-        return false;
+    return (xml.Save(getFileName())) ? true : false;
 }
 
 vector <Income> FileWithIncomes::loadLoggedInUserIncomesFromFile(int loggedInUserId) {

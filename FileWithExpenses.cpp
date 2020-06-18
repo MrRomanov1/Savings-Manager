@@ -18,11 +18,7 @@ bool FileWithExpenses::addExpenseToFile(Expense expense) {
     xml.AddElem("Amount",AuxiliaryMethods::convertDoubleToString(expense.getAmount()));
 
     lastExpenseId++;
-
-    if (xml.Save("expenses.xml")) {
-        return true;
-    } else
-        return false;
+    return (xml.Save(getFileName())) ? true : false;
 }
 
 vector <Expense> FileWithExpenses::loadLoggedInUserExpensesFromFile(int loggedInUserId) {
